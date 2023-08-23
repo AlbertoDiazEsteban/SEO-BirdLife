@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hitos index{% endblock %}
+
+{% block body %}
+    <h1>Hitos index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Fk_resumen</th>
+                <th>Description</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for hito in hitos %}
+            <tr>
+                <td>{{ hito.id }}</td>
+                <td>{{ hito.fkResumen }}</td>
+                <td>{{ hito.description }}</td>
+                <td>
+                    <a href="{{ path('app_hitos_show', {'id': hito.id}) }}">show</a>
+                    <a href="{{ path('app_hitos_edit', {'id': hito.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_hitos_new') }}">Create new</a>
+{% endblock %}

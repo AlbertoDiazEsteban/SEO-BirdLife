@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Resumen{% endblock %}
+
+{% block body %}
+    <h1>Edit Resumen</h1>
+
+    {{ include('resumen/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_resumen_index') }}">back to list</a>
+
+    {{ include('resumen/_delete_form.html.twig') }}
+{% endblock %}

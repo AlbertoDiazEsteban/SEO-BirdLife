@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Resumen{% endblock %}
+
+{% block body %}
+    <h1>Resumen</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ resuman.id }}</td>
+            </tr>
+            <tr>
+                <th>Años</th>
+                <td>{{ resuman.años }}</td>
+            </tr>
+            <tr>
+                <th>N_socios</th>
+                <td>{{ resuman.nSocios }}</td>
+            </tr>
+            <tr>
+                <th>N_voluntarios</th>
+                <td>{{ resuman.nVoluntarios }}</td>
+            </tr>
+            <tr>
+                <th>Gastos</th>
+                <td>{{ resuman.gastos }}</td>
+            </tr>
+            <tr>
+                <th>Ingresos</th>
+                <td>{{ resuman.ingresos }}</td>
+            </tr>
+            <tr>
+                <th>N_rrss</th>
+                <td>{{ resuman.nRrss }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_resumen_index') }}">back to list</a>
+
+    <a href="{{ path('app_resumen_edit', {'id': resuman.id}) }}">edit</a>
+
+    {{ include('resumen/_delete_form.html.twig') }}
+{% endblock %}

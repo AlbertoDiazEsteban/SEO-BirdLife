@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Resumen{% endblock %}
+
+{% block body %}
+    <h1>Create new Resumen</h1>
+
+    {{ include('resumen/_form.html.twig') }}
+
+    <a href="{{ path('app_resumen_index') }}">back to list</a>
+{% endblock %}

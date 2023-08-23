@@ -16,7 +16,7 @@ class Hitos
     private ?int $id = null;
 
     #[ORM\Column(length: 100, nullable: true)]
-    private ?string $fk_resumen = null;
+    private ?int $fecha = null;
 
     #[ORM\Column(length: 255)]
     private ?string $description = null;
@@ -30,14 +30,14 @@ class Hitos
         return $this->id;
     }
 
-    public function getFkResumen(): ?string
+    public function getFecha(): ?int
     {
-        return $this->fk_resumen;
+        return $this->fecha;
     }
 
-    public function setFkResumen(?string $fk_resumen): static
+    public function setFecha(?int $fecha): static
     {
-        $this->fk_resumen = $fk_resumen;
+        $this->fecha = $fecha;
 
         return $this;
     }

@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Resumen index{% endblock %}
+
+{% block body %}
+    <h1>Resumen index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Años</th>
+                <th>N_socios</th>
+                <th>N_voluntarios</th>
+                <th>Gastos</th>
+                <th>Ingresos</th>
+                <th>N_rrss</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for resuman in resumens %}
+            <tr>
+                <td>{{ resuman.id }}</td>
+                <td>{{ resuman.años }}</td>
+                <td>{{ resuman.nSocios }}</td>
+                <td>{{ resuman.nVoluntarios }}</td>
+                <td>{{ resuman.gastos }}</td>
+                <td>{{ resuman.ingresos }}</td>
+                <td>{{ resuman.nRrss }}</td>
+                <td>
+                    <a href="{{ path('app_resumen_show', {'id': resuman.id}) }}">show</a>
+                    <a href="{{ path('app_resumen_edit', {'id': resuman.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_resumen_new') }}">Create new</a>
+{% endblock %}
