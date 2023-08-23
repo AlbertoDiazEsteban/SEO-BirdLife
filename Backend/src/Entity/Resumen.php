@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use ApiPlatform\Metadata\ApiResource;
 use App\Repository\ResumenRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: ResumenRepository::class)]
@@ -32,6 +34,14 @@ class Resumen
 
     #[ORM\Column]
     private ?int $n_rrss = null;
+
+    #[ORM\OneToMany(mappedBy: 'resumen', targetEntity: hitos::class)]
+    private Collection $hitos;
+
+    public function __construct()
+    {
+        $this->hitos = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -106,6 +116,36 @@ class Resumen
     public function setNRrss(int $n_rrss): static
     {
         $this->n_rrss = $n_rrss;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, hitos>
+     */
+    public function getHitos(): Collection
+    {
+        return $this->hitos;
+    }
+
+    public function addHito(hitos $hito): static
+    {
+        if (!$this->hitos->contains($hito)) {
+            $this->hitos->add($hito);
+            $hito->setResumen($this);
+        }
+
+        return $this;
+    }
+
+    public function removeHito(hitos $hito): static
+    {
+        if ($this->hitos->removeElement($hito)) {
+            // set the owning side to null (unless already changed)
+            if ($hito->getResumen() === $this) {
+                $hito->setResumen(null);
+            }
+        }
 
         return $this;
     }

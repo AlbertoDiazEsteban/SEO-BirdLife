@@ -21,6 +21,10 @@ class Hitos
     #[ORM\Column(length: 255)]
     private ?string $description = null;
 
+    #[ORM\ManyToOne(inversedBy: 'hitos')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?Resumen $resumen = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -46,6 +50,18 @@ class Hitos
     public function setDescription(string $description): static
     {
         $this->description = $description;
+
+        return $this;
+    }
+
+    public function getResumen(): ?Resumen
+    {
+        return $this->resumen;
+    }
+
+    public function setResumen(?Resumen $resumen): static
+    {
+        $this->resumen = $resumen;
 
         return $this;
     }
