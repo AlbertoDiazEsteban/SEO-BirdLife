@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New SeguidoresRrss{% endblock %}
+
+{% block body %}
+    <h1>Create new SeguidoresRrss</h1>
+
+    {{ include('seguidores_rrss/_form.html.twig') }}
+
+    <a href="{{ path('app_seguidores_rrss_index') }}">back to list</a>
+{% endblock %}

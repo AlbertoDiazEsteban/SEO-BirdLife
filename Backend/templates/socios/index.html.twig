@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Socios index{% endblock %}
+
+{% block body %}
+    <h1>Socios index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Cantidad</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for socio in socios %}
+            <tr>
+                <td>{{ socio.id }}</td>
+                <td>{{ socio.cantidad }}</td>
+                <td>
+                    <a href="{{ path('app_socios_show', {'id': socio.id}) }}">show</a>
+                    <a href="{{ path('app_socios_edit', {'id': socio.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_socios_new') }}">Create new</a>
+{% endblock %}

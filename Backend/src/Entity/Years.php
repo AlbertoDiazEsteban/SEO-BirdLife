@@ -18,6 +18,12 @@ class Years
     #[ORM\Column]
     private ?int $year = null;
 
+    public function __toString()
+    {
+    return $this -> year;
+      
+    }
+
     public function getId(): ?int
     {
         return $this->id;

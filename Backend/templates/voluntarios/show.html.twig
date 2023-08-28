@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Voluntarios{% endblock %}
+
+{% block body %}
+    <h1>Voluntarios</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ voluntario.id }}</td>
+            </tr>
+            <tr>
+                <th>Cantidad</th>
+                <td>{{ voluntario.cantidad }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_voluntarios_index') }}">back to list</a>
+
+    <a href="{{ path('app_voluntarios_edit', {'id': voluntario.id}) }}">edit</a>
+
+    {{ include('voluntarios/_delete_form.html.twig') }}
+{% endblock %}

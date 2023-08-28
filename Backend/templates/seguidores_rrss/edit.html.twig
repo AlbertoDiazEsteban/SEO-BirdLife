@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit SeguidoresRrss{% endblock %}
+
+{% block body %}
+    <h1>Edit SeguidoresRrss</h1>
+
+    {{ include('seguidores_rrss/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_seguidores_rrss_index') }}">back to list</a>
+
+    {{ include('seguidores_rrss/_delete_form.html.twig') }}
+{% endblock %}

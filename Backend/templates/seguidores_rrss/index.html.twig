@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}SeguidoresRrss index{% endblock %}
+
+{% block body %}
+    <h1>SeguidoresRrss index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Cantidad</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for seguidores_rrss in seguidores_rrsses %}
+            <tr>
+                <td>{{ seguidores_rrss.id }}</td>
+                <td>{{ seguidores_rrss.cantidad }}</td>
+                <td>
+                    <a href="{{ path('app_seguidores_rrss_show', {'id': seguidores_rrss.id}) }}">show</a>
+                    <a href="{{ path('app_seguidores_rrss_edit', {'id': seguidores_rrss.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_seguidores_rrss_new') }}">Create new</a>
+{% endblock %}
