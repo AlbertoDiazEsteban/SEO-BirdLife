@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Voluntarios{% endblock %}
+
+{% block body %}
+    <h1>Create new Voluntarios</h1>
+
+    {{ include('voluntarios/_form.html.twig') }}
+
+    <a href="{{ path('app_voluntarios_index') }}">back to list</a>
+{% endblock %}

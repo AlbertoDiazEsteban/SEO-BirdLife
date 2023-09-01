@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}SeguidoresRrss{% endblock %}
+
+{% block body %}
+    <h1>SeguidoresRrss</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ seguidores_rrss.id }}</td>
+            </tr>
+            <tr>
+                <th>Cantidad</th>
+                <td>{{ seguidores_rrss.cantidad }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_seguidores_rrss_index') }}">back to list</a>
+
+    <a href="{{ path('app_seguidores_rrss_edit', {'id': seguidores_rrss.id}) }}">edit</a>
+
+    {{ include('seguidores_rrss/_delete_form.html.twig') }}
+{% endblock %}

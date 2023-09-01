@@ -20,7 +20,7 @@ class Voluntarios
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     #[ORM\JoinColumn(nullable: false)]
-    private ?years $fk_year = null;
+    private ?Years $fk_year = null;
 
     public function getId(): ?int
     {
@@ -39,12 +39,12 @@ class Voluntarios
         return $this;
     }
 
-    public function getFkYear(): ?years
+    public function getFkYear(): ?Years
     {
         return $this->fk_year;
     }
 
-    public function setFkYear(years $fk_year): static
+    public function setFkYear(Years $fk_year): static
     {
         $this->fk_year = $fk_year;
 
