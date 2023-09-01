@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <h1>Bienvenido a la Página de Inicio</h1>
+    <p>Hola Administrador, ¡estás en la página de inicio de tu aplicación!</p>
+    <p>Aquí podrás acceder a las diferentes funcionalidades de edición y creación de tus entidades.</p>
+    <ul>
+        <li><a href="{{ path('ruta_edicion_entidad1') }}">Editar Entidad 1</a></li>
+        <li><a href="{{ path('ruta_edicion_entidad2') }}">Editar Entidad 2</a></li>
+        <!-- Agrega más enlaces a las páginas de edición de tus entidades -->
+        <li><a href="{{ path('ruta_creacion_entidad1') }}">Crear Nueva Entidad 1</a></li>
+        <li><a href="{{ path('ruta_creacion_entidad2') }}">Crear Nueva Entidad 2</a></li>
+        <!-- Agrega más enlaces a las páginas de creación de tus entidades -->
+    </ul>
+{% endblock %}
