@@ -1,0 +1,10 @@
+/* En stylehome.css */
+
+.bg-image {
+    background-image: url('../images/fondo.avif');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    height: 100vh; /* 100% de la altura de la ventana gráfica (viewport) */
+    width: 100%;   /* 100% del ancho de la ventana gráfica (viewport) */
+}
