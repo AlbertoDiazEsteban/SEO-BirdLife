@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello UserHomeController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Hola Bienvenido a la Api de SeoBirdLife✅</h1>
+
+        Aca esta la lista de las url los cuales puedes usar en tu proyecto frontend
+    <ul>
+        <li>Voluntarios <code><a href="{{ path('app_voluntarios_apis') }}">/voluntarios/apis</a></code></li>
+        <li>Socios <code><a href="{{ path('app_socios_apis') }}">SeoBirdLife/socios/apis</a></code></li>
+          <li>Presupuesto <code><a href="{{ path('app_presupuesto_apis') }}">SeoBirdLife/presupuesto/apis</a></code></li>
+        <li>seguidores <code><a href="{{ path('app_seguidores/rrss_apis') }}">SeoBirdLife/seguidores/apis</a></code></li>  
+    </ul>
+
+    <h3>Aca te muestro como se hace una peticion fecth a uno de nuestros controladores con Javascript </h3>
+</div>
+{% endblock %}

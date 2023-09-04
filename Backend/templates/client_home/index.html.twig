@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ClientHomeController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h1>Hola Bienvenido a tu Api  ✅</h1>
+
+     te mostrare la ruta para que puedas editar los datos correctamente  
+     primero agrega un año 
+      <ul>
+       <li>años<code><a href="{{ path('app_years_index') }}">haz clic aqui y modifica o añade un año</a></code></li>
+
+       no se te olvide ingresar la cantidad de voluntarios que tienes en este nuevo año 
+        <li>Voluntarios <code><a href="{{ path('app_voluntarios_index') }}">/voluntarios/apis</a></code></li>
+
+        tambien tus socios son muy importantes 
+        <li>Socios <code><a href="{{ path('app_socios_index') }}">SeoBirdLife/socios/apis</a></code></li>
+
+        ahora el presupuesto de gastos  e ingresos
+          <li>Presupuesto <code><a href="{{ path('app_presupuesto_index') }}">SeoBirdLife/presupuesto/apis</a></code></li>
+
+          que tal si finalizamos agregando la cantidad de seguidores  que tienes en tus redes sociales y visitas a tu pagina wev
+        <li>seguidores <code><a href="{{ path('app_seguidores_rrss_index') }}">SeoBirdLife/seguidores/apis</a></code></li>  
+    </ul>
+
+    <h3>hemos terminado </h3>
+</div>
+{% endblock %}

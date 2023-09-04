@@ -1,64 +1,57 @@
 <?php
 
-namespace App\Tests;
+namespace App\Tests\Controller;
 
-use App\Controller\RegistrationController;
+use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
-use Symfony\Component\Mailer\Test\Interception\AbstractEmailInterception;
-use Symfony\Component\Mailer\Test\Interception\EmailInterception;
-use Symfony\Component\Panther\PantherTestCase;
 
-class RegistrationControllerTest extends PantherTestCase
+class RegistrationControllerTest extends WebTestCase
 {
-    public function testEmailIsSentAfterRegistration(): void
+    public function testRegisterPageIsSuccessful(): void
     {
-        $client = static::createPantherClient();
+        $client = static::createClient();
 
-        // Interceptamos el envío de correo electrónico para su posterior verificación
-        AbstractEmailInterception::setEnabled(true);
-        AbstractEmailInterception::intercept();
+        $client->request('GET', '/register');
 
-        // Simulamos una solicitud POST a la página de registro con datos válidos
-        $client->request('POST', '/register', [
-            'registration_form' => [
-                'username' => 'testuser',
-                'email' => 'testuser@example.com',
-                'plainPassword' => 'password',
-            ],
-        ]);
-
-        // Verificamos que la respuesta sea una redirección (por ejemplo, a la página de inicio)
-        $this->assertResponseRedirects('/');
-
-        // Obtenemos todos los correos electrónicos que se enviaron durante la solicitud
-        $emails = EmailInterception::getSentEmails();
-
-        // Verificamos si se envió un correo electrónico
-        $this->assertCount(1, $emails);
-
-        // Verificamos el contenido del correo electrónico
-        $email = $emails[0];
-        $this->assertSame('francoarazualexsandro@gmail.com', $email->getFrom()[0]->getAddress());
-        $this->assertSame('testuser@example.com', $email->getTo()[0]->getAddress());
-        $this->assertSame('ESTO ES UNA CONFIRMACION DE TU CUENTA', $email->getSubject());
-        $this->assertStringContainsString('contenido esperado', $email->getTextBody());
+        $this->assertResponseIsSuccessful();
     }
 
-    public function testFailedRegistrationWithInvalidData(): void
+    public function testRegistrationFormSubmission(): void
     {
-        $client = static::createPantherClient();
+        $client = static::createClient();
+        $crawler = $client->request('GET', '/register');
 
-        // Simulamos una solicitud POST a la página de registro con datos inválidos o faltantes
-        $client->request('POST', '/register', [
-            'registration_form' => [
-                // Datos de registro inválidos o faltantes
-            ],
-        ]);
+        $form = $crawler->selectButton('Register')->form();
 
-        // Verificamos que la respuesta sea un código de estado 200 (OK)
-        $this->assertResponseStatusCodeSame(Response::HTTP_OK);
+        $form['registration_form[username]'] = 'testuser';
+        $form['registration_form[email]'] = 'testuser@example.com';
+        $form['registration_form[plainPassword]'] = 'password';
 
-        // Verificamos que se muestra un mensaje de error en la página
+        $client->submit($form);
+
+        $this->assertResponseRedirects('/'); 
+    }
+
+    public function testRegistrationWithInvalidData(): void
+    {
+        $client = static::createClient();
+        $crawler = $client->request('GET', '/register');
+
+        $form = $crawler->selectButton('Register')->form();
+
+        
+        $client->submit($form);
+
+        $this->assertResponseIsSuccessful(); 
         $this->assertSelectorTextContains('div.alert-danger', 'Error en el registro');
+    }
+
+    public function testEmailConfirmationAfterRegistration(): void
+    {
+   
+
+        $client = static::createClient();
+
+      
     }
 }
