@@ -37,6 +37,7 @@
         "symfony/twig-bundle": "5.4.*",
         "symfony/validator": "5.4.*",
         "symfony/yaml": "5.4.*",
+        "symfonycasts/reset-password-bundle": "*",
         "symfonycasts/verify-email-bundle": "*"
     },
     "config": {
