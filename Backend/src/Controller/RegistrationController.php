@@ -53,7 +53,7 @@ class RegistrationController extends AbstractController
             );
             
 
-            return $this->redirectToRoute('app_socios_index');
+            return $this->redirectToRoute('app_login');
         }
 
         return $this->render('registration/register.html.twig', [

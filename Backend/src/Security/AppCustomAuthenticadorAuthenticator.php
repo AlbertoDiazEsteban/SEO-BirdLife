@@ -30,7 +30,7 @@ class AppCustomAuthenticadorAuthenticator extends AbstractLoginFormAuthenticator
         $email = $request->request->get('email', '');
 
         $request->getSession()->set(Security::LAST_USERNAME, $email);
-
+//
         return new Passport(
             new UserBadge($email),
             new PasswordCredentials($request->request->get('password', '')),
@@ -45,9 +45,9 @@ class AppCustomAuthenticadorAuthenticator extends AbstractLoginFormAuthenticator
         if ($targetPath = $this->getTargetPath($request->getSession(), $firewallName)) {
             return new RedirectResponse($targetPath);
         }
-
+        //dump($roleNames);die;
         // For example:
-         return new RedirectResponse($this->urlGenerator->generate('app_usuarios'));
+         return new RedirectResponse($this->urlGenerator->generate('app_client_home'));
         throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
     }
 
