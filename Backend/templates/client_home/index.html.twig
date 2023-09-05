@@ -1,34 +1,58 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Hello ClientHomeController!{% endblock %}
+{% block head %}
+    {{ parent() }}
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/stylehome.css') }}">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <style>
+            .custom-container {
+                text-align: left;
+                margin-top: 20px;
+            }
+        </style>
+    {% endblock %}
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <div class="container-fluid d-flex justify-content-center bg-image" style="min-height: 100vh;">
+        <div class="custom-container">
+        <div class="d-flex">
+            <img src="{{ asset('images/logo-seo.svg') }}" alt="Logo" class="logo align-self-start" style="width: 150px;">
 
-<div class="example-wrapper">
-    <h1>Hola Bienvenido a tu Api  ✅</h1>
+        </div>
+            <h1 class="mt-4">Bienvenido a tu Api</h1>
+            <p class="font-italic">Aquí podrás insertar nueva información:</p>
+            <ul class="list-unstyled">
+                <li class="mb-3">
+                    *Año:
+                    <a href="{{ path('app_years_index') }}" class="btn btn-primary">Insertar</a>
+                </li>
 
-     te mostrare la ruta para que puedas editar los datos correctamente  
-     primero agrega un año 
-      <ul>
-       <li>años<code><a href="{{ path('app_years_index') }}">haz clic aqui y modifica o añade un año</a></code></li>
+                <li class="mb-3">
+                    *Nº de voluntarios:
+                    <a href="{{ path('app_voluntarios_index') }}" class="btn btn-primary">Insertar</a>
+                </li>
 
-       no se te olvide ingresar la cantidad de voluntarios que tienes en este nuevo año 
-        <li>Voluntarios <code><a href="{{ path('app_voluntarios_index') }}">/voluntarios/apis</a></code></li>
+                <li class="mb-3">
+                    *Nº de socios:
+                    <a href="{{ path('app_socios_index') }}" class="btn btn-primary">Insertar</a>
+                </li>
 
-        tambien tus socios son muy importantes 
-        <li>Socios <code><a href="{{ path('app_socios_index') }}">SeoBirdLife/socios/apis</a></code></li>
+                <li class="mb-3">
+                    *Presupuesto (ingresos y gastos):
+                    <a href="{{ path('app_presupuesto_index') }}" class="btn btn-primary">Insertar</a>
+                </li>
 
-        ahora el presupuesto de gastos  e ingresos
-          <li>Presupuesto <code><a href="{{ path('app_presupuesto_index') }}">SeoBirdLife/presupuesto/apis</a></code></li>
+                <li class="mb-3">
+                    *Nº de seguidores:
+                    <a href="{{ path('app_seguidores_rrss_index') }}" class="btn btn-primary">Insertar</a>
+                </li>
+            </ul>
+            <a class="btn btn-success btn-lg mt-4" href="{{ path('app_home') }}">Volver al Inicio</a>
+        </div>
+    </div>
 
-          que tal si finalizamos agregando la cantidad de seguidores  que tienes en tus redes sociales y visitas a tu pagina wev
-        <li>seguidores <code><a href="{{ path('app_seguidores_rrss_index') }}">SeoBirdLife/seguidores/apis</a></code></li>  
-    </ul>
-
-    <h3>hemos terminado </h3>
-</div>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 {% endblock %}

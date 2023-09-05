@@ -1,24 +1,53 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}Hello UserHomeController!{% endblock %}
+{% block head %}
+    {{ parent() }}
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('css/stylehome.css') }}">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <style>
+            .custom-container {
+                text-align: left;
+                margin-top: 20px;
+            }
+        </style>
+    {% endblock %}
+{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
+    <div class="container-fluid d-flex justify-content-center bg-image" style="min-height: 100vh;">
+        <div class="custom-container">
+        <div class="d-flex">
+            <img src="{{ asset('images/logo-seo.svg') }}" alt="Logo" class="logo align-self-start" style="width: 150px;">
 
-<div class="example-wrapper">
-    <h1>Hola Bienvenido a la Api de SeoBirdLife✅</h1>
+        </div>
+            <h1 class="mt-4">Bienvenido a tu Api</h1>
+            <p class="font-italic">Aquí tendrás el acceso al json:</p>
+            <ul class="list-unstyled">
+                <li class="mb-3">
+                    *Voluntarios:
+                    <a href="{{ path('app_voluntarios_apis') }}" class="btn btn-primary">mostrar</a>
+                </li>
 
-        Aca esta la lista de las url los cuales puedes usar en tu proyecto frontend
-    <ul>
-        <li>Voluntarios <code><a href="{{ path('app_voluntarios_apis') }}">/voluntarios/apis</a></code></li>
-        <li>Socios <code><a href="{{ path('app_socios_apis') }}">SeoBirdLife/socios/apis</a></code></li>
-          <li>Presupuesto <code><a href="{{ path('app_presupuesto_apis') }}">SeoBirdLife/presupuesto/apis</a></code></li>
-        <li>seguidores <code><a href="{{ path('app_seguidores/rrss_apis') }}">SeoBirdLife/seguidores/apis</a></code></li>  
-    </ul>
+                <li class="mb-3">
+                    *Socios:
+                    <a href="{{ path('app_socios_apis') }}" class="btn btn-primary">mostrar</a>
+                </li>
 
-    <h3>Aca te muestro como se hace una peticion fecth a uno de nuestros controladores con Javascript </h3>
-</div>
+                <li class="mb-3">
+                    *Presupuesto (ingresos y gastos):
+                    <a href="{{ path('app_presupuesto_apis') }}" class="btn btn-primary">mostrar</a>
+                </li>
+
+                <li class="mb-3">
+                    *Seguidores:
+                    <a href="{{ path('app_seguidores/rrss_apis') }}" class="btn btn-primary">mostrar</a>
+                </li>
+            </ul>
+            <a class="btn btn-success btn-lg mt-4" href="{{ path('app_home') }}">Volver al Inicio</a>
+        </div>
+    </div>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 {% endblock %}
