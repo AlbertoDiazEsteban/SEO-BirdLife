@@ -1,9 +1,10 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}SeguidoresRrss index{% endblock %}
+{% block title %}Seguidores rrss{% endblock %}
 
 {% block body %}
-    <h1>SeguidoresRrss index</h1>
+<div class="container my-3">
+    <h1>Seguidores en rrss</h1>
 
     <table class="table">
         <thead>
@@ -19,8 +20,8 @@
                 <td>{{ seguidores_rrss.id }}</td>
                 <td>{{ seguidores_rrss.cantidad }}</td>
                 <td>
-                    <a href="{{ path('app_seguidores_rrss_show', {'id': seguidores_rrss.id}) }}">show</a>
-                    <a href="{{ path('app_seguidores_rrss_edit', {'id': seguidores_rrss.id}) }}">edit</a>
+                    <a href="{{ path('app_seguidores_rrss_show', {'id': seguidores_rrss.id}) }}">mostrar |</a>
+                    <a href="{{ path('app_seguidores_rrss_edit', {'id': seguidores_rrss.id}) }}">editar</a>
                 </td>
             </tr>
         {% else %}
@@ -31,5 +32,7 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_seguidores_rrss_new') }}">Create new</a>
+    <a href="{{ path('app_seguidores_rrss_new') }}">Añadir datos</a><br>
+    <a class="btn btn-success btn-lg mt-4" href="{{ path('app_client_home') }}">Volver al panel</a>
+    </div>
 {% endblock %}

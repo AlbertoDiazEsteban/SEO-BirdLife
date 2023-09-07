@@ -2,12 +2,4 @@
 
 .bg-image {
     background-image: url('../images/fondo.avif');
-    background-size: cover; /* Hace que la imagen de fondo cubra toda la pantalla */
-    background-position: center center; /* Centra la imagen de fondo horizontal y verticalmente */
-    background-repeat: no-repeat; /* Evita que la imagen de fondo se repita */
-    min-height: 100vh; /* Establece una altura mínima del 100% del viewport height */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
 }
