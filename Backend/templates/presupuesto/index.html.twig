@@ -22,8 +22,8 @@
                 <td>{{ presupuesto.ingresos }}</td>
                 <td>{{ presupuesto.gastos }}</td>
                 <td>
-                    <a href="{{ path('app_presupuesto_show', {'id': presupuesto.id}) }}">show</a>
-                    <a href="{{ path('app_presupuesto_edit', {'id': presupuesto.id}) }}">edit</a>
+                    <a href="{{ path('app_presupuesto_show', {'id': presupuesto.id}) }}">mostrar |</a>
+                    <a href="{{ path('app_presupuesto_edit', {'id': presupuesto.id}) }}">editar</a>
                 </td>
             </tr>
         {% else %}
@@ -34,7 +34,7 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_presupuesto_new') }}">Create new</a><br>
+    <a href="{{ path('app_presupuesto_new') }}">Añadir datos</a><br>
     <a class="btn btn-success btn-lg mt-4" href="{{ path('app_client_home') }}">Volver al panel</a>
     </div>
 {% endblock %}
