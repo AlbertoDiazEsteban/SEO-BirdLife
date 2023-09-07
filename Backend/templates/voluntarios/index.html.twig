@@ -3,7 +3,8 @@
 {% block title %}Voluntarios index{% endblock %}
 
 {% block body %}
-    <h1>Voluntarios index</h1>
+<div class="container my-3">
+    <h1>Voluntarios</h1>
 
     <table class="table">
         <thead>
@@ -19,8 +20,8 @@
                 <td>{{ voluntario.id }}</td>
                 <td>{{ voluntario.cantidad }}</td>
                 <td>
-                    <a href="{{ path('app_voluntarios_show', {'id': voluntario.id}) }}">show</a>
-                    <a href="{{ path('app_voluntarios_edit', {'id': voluntario.id}) }}">edit</a>
+                    <a href="{{ path('app_voluntarios_show', {'id': voluntario.id}) }}">mostrar |</a>
+                    <a href="{{ path('app_voluntarios_edit', {'id': voluntario.id}) }}">editar</a>
                 </td>
             </tr>
         {% else %}
@@ -31,5 +32,8 @@
         </tbody>
     </table>
 
-    <a href="{{ path('app_voluntarios_new') }}">Create new</a>
+    <a href="{{ path('app_voluntarios_new') }}">Añadir datos</a>
+    <br>
+    <a class="btn btn-success btn-lg mt-4" href="{{ path('app_client_home') }}">Volver al panel</a>
+</div>
 {% endblock %}
