@@ -1,0 +1,10 @@
+.custom-container {
+    text-align: left;
+    margin-top: 20px;
+}
+
+.api-link {
+    text-decoration: underline;
+    color: #007bff;
+    cursor: pointer;
+}
