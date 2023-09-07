@@ -1,15 +1,22 @@
+
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello UserHomeController!{% endblock %}
+{% block title %}API de SeoBirdLife{% endblock %}
+
 {% block head %}
     {{ parent() }}
     {% block stylesheets %}
-        <link rel="stylesheet" href="{{ asset('css/stylehome.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/userHome.css') }}">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <style>
             .custom-container {
                 text-align: left;
                 margin-top: 20px;
+            }
+            .api-link {
+                text-decoration: underline;
+                color: #007bff;
+                cursor: pointer;
             }
         </style>
     {% endblock %}
@@ -18,33 +25,63 @@
 {% block body %}
     <div class="container-fluid d-flex justify-content-center bg-image" style="min-height: 100vh;">
         <div class="custom-container">
-        <div class="d-flex">
-            <img src="{{ asset('images/logo-seo.svg') }}" alt="Logo" class="logo align-self-start" style="width: 150px;">
-
-        </div>
-            <h1 class="mt-4">Bienvenidoa la Api de seobirdlife</h1>
-            <p class="font-italic">Aquí tendrás el acceso al json:</p>
-            <ul class="list-unstyled">
+            <div class="d-flex">
+                <img src="{{ asset('images/logo-seo.svg') }}" alt="Logo" class="logo align-self-start" style="width: 150px;">
+            </div>
+            <h1 class="mt-4">Bienvenido a la API de SeoBirdLife</h1>
+            <p class="font-italic">Aquí tendrás acceso a datos JSON a través de nuestras rutas API:</p>
+           <ul class="list-unstyled">
                 <li class="mb-3">
-                    *Voluntarios:
-                    <a href="{{ path('app_voluntarios_apis') }}" class="btn btn-primary">mostrar</a>
+                    <strong>Voluntarios:</strong>
+                    <span class="api-link" onclick="window.location.href='https://seobirdlife.coderf5.es/voluntarios/apis'">https://seobirdlife.coderf5.es/voluntarios/apis</span>
                 </li>
 
                 <li class="mb-3">
-                    *Socios:
-                    <a href="{{ path('app_socios_apis') }}" class="btn btn-primary">mostrar</a>
+                    <strong>Socios:</strong>
+                    <span class="api-link" onclick="window.location.href='https://seobirdlife.coderf5.es/socios/apis'">https://seobirdlife.coderf5.es/socios/apis</span>
                 </li>
 
                 <li class="mb-3">
-                    *Presupuesto (ingresos y gastos):
-                    <a href="{{ path('app_presupuesto_apis') }}" class="btn btn-primary">mostrar</a>
+                    <strong>Presupuesto (Ingresos y Gastos):</strong>
+                    <span class="api-link" onclick="window.location.href='https://seobirdlife.coderf5.es/presupuesto/apis'">https://seobirdlife.coderf5.es/presupuesto/apis</span>
                 </li>
 
                 <li class="mb-3">
-                    *Seguidores:
-                    <a href="{{ path('app_seguidores/rrss_apis') }}" class="btn btn-primary">mostrar</a>
+                    <strong>Seguidores en RRSS:</strong>
+                    <span class="api-link" onclick="window.location.href='https://seobirdlife.coderf5.es/seguidores/rrss/apis'">https://seobirdlife.coderf5.es/seguidores/rrss/apis</span>
                 </li>
             </ul>
+            <h2 class="mt-4">Ejemplo de Peticiones Fetch</h2>
+            <p>Aquí tienes un ejemplo de cómo consumir una API en JavaScript y React:</p>
+            
+            <h3>JavaScript:</h3>
+            <pre>
+                <code>
+fetch("https://seobirdlife.coderf5.es/voluntarios/apis")
+    .then(response => response.json())
+    .then(data => {
+        // Procesa los datos JSON aquí
+    })
+    .catch(error => {
+        // Maneja errores aquí
+    });
+                </code>
+            </pre>
+
+            <h3>React:</h3>
+            <pre>
+                <code>
+fetch("https://seobirdlife.coderf5.es/voluntarios/apis")
+    .then(response => response.json())
+    .then(data => {
+        // Procesa los datos JSON aquí en React
+    })
+    .catch(error => {
+        // Maneja errores aquí en React
+    });
+                </code>
+            </pre>
+
             <a class="btn btn-success btn-lg mt-4" href="{{ path('app_home') }}">Volver al Inicio</a>
         </div>
     </div>
