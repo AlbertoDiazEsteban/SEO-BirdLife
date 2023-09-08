@@ -40,10 +40,16 @@ class RegistrationController extends AbstractController
                 )
             );
 
+            // Verificar si el correo contiene "@seo.org" y asignar el rol "ROLE_ADMIN" si es así
+            $email = $user->getEmail();
+            if (strpos($email, '@seo.org') !== false) {
+                $user->addRole("ROLE_ADMIN");
+            }
+
             $entityManager->persist($user);
             $entityManager->flush();
 
-          
+            // Send email confirmation
             $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
                 (new TemplatedEmail())
                     ->from(new Address('francoarazualexsandro@gmail.com', 'REGISTRO API SEO BIRD LIFE'))
@@ -52,7 +58,6 @@ class RegistrationController extends AbstractController
                     ->htmlTemplate('registration/confirmation_email.html.twig')
             );
             
-
             return $this->redirectToRoute('app_login');
         }
 
@@ -66,7 +71,6 @@ class RegistrationController extends AbstractController
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
-       
         try {
             $this->emailVerifier->handleEmailConfirmation($request, $this->getUser());
         } catch (VerifyEmailExceptionInterface $exception) {
@@ -75,7 +79,6 @@ class RegistrationController extends AbstractController
             return $this->redirectToRoute('app_register');
         }
 
-    
         $this->addFlash('success', 'Your email address has been verified.');
 
         return $this->redirectToRoute('app_register');
