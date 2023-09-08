@@ -22,5 +22,5 @@ services:
             - '../src/Kernel.php'
 
     # Configración del Suscriptor de Eventos para Asignar el Rol "ROLE_ADMIN"
-    App\AutomaticRoleAdmin\AutomaticRoleAdminSubscriber:
-            - { name: kernel.event_subscriber }
+    # App\AutomaticRoleAdmin\AutomaticRoleAdminSubscriber:
+    #         - { name: kernel.event_subscriber }
