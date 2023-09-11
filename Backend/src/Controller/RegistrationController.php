@@ -14,18 +14,28 @@ use Symfony\Component\Mime\Address;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Routing\Annotation\Route;
 use SymfonyCasts\Bundle\VerifyEmail\Exception\VerifyEmailExceptionInterface;
+use Symfony\Component\Security\Core\Security;
+use Symfony\Component\Security\Core\Authentication\Token\UsernamePasswordToken;
+use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 class RegistrationController extends AbstractController
 {
     private EmailVerifier $emailVerifier;
+    private EventDispatcherInterface $eventDispatcher; 
 
-    public function __construct(EmailVerifier $emailVerifier)
+
+    public function __construct(EmailVerifier $emailVerifier, EventDispatcherInterface $eventDispatcher)
     {
         $this->emailVerifier = $emailVerifier;
+        $this->eventDispatcher = $eventDispatcher; 
     }
 
+
+
+
     #[Route('/register', name: 'app_register')]
-    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager): Response
+    public function register(Request $request, UserPasswordHasherInterface $userPasswordHasher, EntityManagerInterface $entityManager, Security $security): Response
     {
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
@@ -49,22 +59,34 @@ class RegistrationController extends AbstractController
             $entityManager->persist($user);
             $entityManager->flush();
 
-            // Send email confirmation
-            $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
+            // automatic login
+            $token = new UsernamePasswordToken($user, null, 'main', $user->getRoles());
+            $this->get('security.token_storage')->setToken($token);
+            $event = new InteractiveLoginEvent($request, $token);
+            $this->eventDispatcher->dispatch($event);
+
+             $this->emailVerifier->sendEmailConfirmation('app_verify_email', $user,
                 (new TemplatedEmail())
                     ->from(new Address('francoarazualexsandro@gmail.com', 'REGISTRO API SEO BIRD LIFE'))
                     ->to($user->getEmail())
-                    ->subject(' ESTO ES UNA CONFIRMACION DE TU CUENTA')
+                    ->subject('ESTO ES UNA CONFIRMACIÓN DE TU CUENTA')
                     ->htmlTemplate('registration/confirmation_email.html.twig')
             );
-            
-            return $this->redirectToRoute('app_login');
+
+            if (in_array("ROLE_ADMIN", $user->getRoles())) {
+                return $this->redirectToRoute('app_client_home'); 
+            } else {
+                return $this->redirectToRoute('app_user_home'); 
+            }
         }
 
         return $this->render('registration/register.html.twig', [
             'registrationForm' => $form->createView(),
         ]);
     }
+
+
+    
 
     #[Route('/verify/email', name: 'app_verify_email')]
     public function verifyUserEmail(Request $request): Response
@@ -79,7 +101,7 @@ class RegistrationController extends AbstractController
             return $this->redirectToRoute('app_register');
         }
 
-        $this->addFlash('success', 'Your email address has been verified.');
+        $this->addFlash('success', 'Tu dirección de correo electrónico ha sido verificada.');
 
         return $this->redirectToRoute('app_register');
     }
