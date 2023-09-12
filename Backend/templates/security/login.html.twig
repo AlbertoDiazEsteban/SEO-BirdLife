@@ -19,7 +19,7 @@
 
                 {% if app.user %}
                     <div class="mb-3">
-                        You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+                        Bienvenido {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">cerrar sesión</a>
                     </div>
                 {% endif %}
 
@@ -43,8 +43,11 @@
                     Enviar
                 </button>
             </form>
+           <a href="{{ path('app_forgot_password_request') }}" class="text-dark">Recuperar Contraseña</a>
+           <br>
+
             <a class="btn btn-success btn-lg mt-4" href="{{ path('app_home') }}">Volver al Inicio</a>
         </div>
-    
+     
 </div>
 {% endblock %}
