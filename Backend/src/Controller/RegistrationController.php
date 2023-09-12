@@ -52,7 +52,7 @@ class RegistrationController extends AbstractController
 
             // Verificar si el correo contiene "@seo.org" y asignar el rol "ROLE_ADMIN" si es así
             $email = $user->getEmail();
-            if (strpos($email, '@seo.org') !== false) {
+            if (strpos($email, '@cun.edu.co') !== false) {
                 $user->addRole("ROLE_ADMIN");
             }
 

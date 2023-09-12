@@ -6,7 +6,7 @@
 {% block head %}
     {{ parent() }}
     {% block stylesheets %}
-        <link rel="stylesheet" href="{{ asset('css/userHome.css') }}">
+        
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
         <style>
             .custom-container {
@@ -23,7 +23,7 @@
 {% endblock %}
 
 {% block body %}
-    <div class="container-fluid d-flex justify-content-center bg-image" style="min-height: 100vh;">
+    <div class="container-fluid d-flex justify-content-center" style="min-height: 100vh;">
         <div class="custom-container">
             <div class="d-flex">
                 <img src="{{ asset('images/logo-seo.svg') }}" alt="Logo" class="logo align-self-start" style="width: 150px;">
